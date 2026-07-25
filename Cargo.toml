@@ -1,0 +1,23 @@
+[workspace]
+resolver = "3"
+members = [
+    "01-basics",
+    "02-ownership-lifetimes",
+    "03-strings",
+    "04-arrays-slices-vectors",
+    "05-structs-enums-patterns",
+    "06-collections",
+    "07-generics-traits",
+    "08-closures-iterators",
+    "09-error-handling",
+    "10-smart-pointers",
+    "11-modules-packages",
+    "12-json",
+    "13-http-calls",
+    "14-multithreading",
+    "15-tokio-async",
+    "16-macros",
+    "17-unsafe-rust",
+    "18-testing",
+]
+
