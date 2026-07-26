@@ -1,0 +1,9 @@
+[application]
+name = "Rust Knowledge Tester"
+asset_dir = "assets"
+
+[bundle]
+identifier = "com.yakhnitskyy.rust-knowledge-tester"
+publisher = "yakhnitskyy"
+resources = ["assets/questions.json"]
+

@@ -8,8 +8,9 @@ folder is an independent Cargo project. Open a folder in VS Code, read its
 cargo run
 ```
 
-Every binary prints numbered headings and executes its examples from simple to
-advanced. Project 13 requires network access; all other examples run offline.
+Projects 01–18 print numbered headings and execute their examples from simple to
+advanced. Project 19 opens an interactive Dioxus desktop quiz. Project 13
+requires network access; all other projects run offline.
 
 ## Learning path
 
@@ -31,6 +32,7 @@ advanced. Project 13 requires network access; all other examples run offline.
 16. `16-macros`
 17. `17-unsafe-rust`
 18. `18-testing`
+19. `19-rust-knowledge-tester` — a Windows-compatible Dioxus desktop quiz
 
 ## Workspace commands
 

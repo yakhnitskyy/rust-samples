@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Tester Builder"
+  short_description: "Build configurable programming knowledge quizzes"
+  default_prompt: "Use $build-knowledge-tester to create a 15-question quiz about programming language like Python using TypeScript and React."

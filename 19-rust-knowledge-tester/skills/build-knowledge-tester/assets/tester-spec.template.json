@@ -1,0 +1,12 @@
+{
+  "application_name": "<Subject> Knowledge Tester",
+  "subject": "<programming language or technical topic>",
+  "implementation_language": "<implementation language>",
+  "framework": "<application framework>",
+  "target_platforms": ["<target platform>"],
+  "bank_size": 70,
+  "quiz_size": 15,
+  "pass_percent": 80,
+  "question_file": "assets/questions.json"
+}
+

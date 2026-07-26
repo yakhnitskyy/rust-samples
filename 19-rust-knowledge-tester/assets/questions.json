@@ -1,0 +1,492 @@
+[
+  {
+    "id": 1,
+    "prompt": "Which declaration allows the variable `count` to be reassigned?",
+    "options": ["let count = 0;", "let mut count = 0;", "const count: i32 = 0;", "let count = 0.clone();"],
+    "correct_answers": [1],
+    "explanation": "Bindings are immutable by default. The `mut` keyword permits reassignment."
+  },
+  {
+    "id": 2,
+    "prompt": "Which of these standard scalar types implement `Copy`? Select all that apply.",
+    "options": ["i32", "bool", "char", "String"],
+    "correct_answers": [0, 1, 2],
+    "explanation": "Integer types, booleans, and characters are Copy. String owns heap data and is moved unless explicitly cloned."
+  },
+  {
+    "id": 3,
+    "prompt": "What happens after `let second = first;` when `first` is a `String`?",
+    "options": ["Both variables independently own the same allocation", "Ownership moves to `second` and `first` can no longer be used", "The string is automatically cloned", "The allocation is immediately freed"],
+    "correct_answers": [1],
+    "explanation": "Assigning a non-Copy value moves ownership. Rust prevents use of the previous binding."
+  },
+  {
+    "id": 4,
+    "prompt": "Which statements about shared references (`&T`) are true? Select all that apply.",
+    "options": ["Multiple shared references may coexist", "A shared reference always owns its value", "The referenced value cannot be mutated through a shared reference", "A shared reference must have a `'static` lifetime"],
+    "correct_answers": [0, 2],
+    "explanation": "Shared references permit multiple readers, but they do not grant mutation or ownership."
+  },
+  {
+    "id": 5,
+    "prompt": "While an `&mut T` borrow is active, what other access to that value is allowed?",
+    "options": ["Any number of shared borrows", "No other borrow through the original owner", "One additional mutable borrow", "Only raw-pointer writes"],
+    "correct_answers": [1],
+    "explanation": "A mutable borrow is exclusive for its active lifetime."
+  },
+  {
+    "id": 6,
+    "prompt": "Which properties describe a slice such as `&[i32]`? Select all that apply.",
+    "options": ["It borrows a contiguous sequence", "It always owns a heap allocation", "It stores a pointer and a length", "Its length must be known at compile time"],
+    "correct_answers": [0, 2],
+    "explanation": "A slice is a dynamically sized view represented by a data pointer and a length."
+  },
+  {
+    "id": 7,
+    "prompt": "What does a lifetime annotation on a function primarily express?",
+    "options": ["How many seconds a value lives", "Relationships between the lifetimes of references", "When the garbage collector should run", "The order in which functions execute"],
+    "correct_answers": [1],
+    "explanation": "Lifetime parameters connect input and output reference validity; they do not extend lifetimes."
+  },
+  {
+    "id": 8,
+    "prompt": "Which values normally have a `'static` lifetime? Select all that apply.",
+    "options": ["String literals", "Items declared with `static`", "Every local String", "Every reference returned from a function"],
+    "correct_answers": [0, 1],
+    "explanation": "String literals are embedded in the binary, and static items exist for the program's duration."
+  },
+  {
+    "id": 9,
+    "prompt": "Why does Rust not support indexing a `String` with a single integer?",
+    "options": ["Strings are always encrypted", "Strings contain no bytes", "UTF-8 characters can occupy different numbers of bytes", "String indexing requires unsafe code"],
+    "correct_answers": [2],
+    "explanation": "A byte index does not necessarily identify a complete Unicode scalar value."
+  },
+  {
+    "id": 10,
+    "prompt": "Which statements about Rust strings are true? Select all that apply.",
+    "options": ["String and str data is valid UTF-8", "`len()` returns the number of bytes", "`chars().count()` can differ from `len()`", "Every visible grapheme is exactly one `char`"],
+    "correct_answers": [0, 1, 2],
+    "explanation": "Rust strings are UTF-8. Character count may differ from byte length, and grapheme clusters may contain multiple chars."
+  },
+  {
+    "id": 11,
+    "prompt": "Which type represents exactly four 32-bit integers?",
+    "options": ["Vec<i32>", "[i32; 4]", "&[i32]", "(i32, 4)"],
+    "correct_answers": [1],
+    "explanation": "The array type `[T; N]` includes its fixed length in the type."
+  },
+  {
+    "id": 12,
+    "prompt": "What may happen when pushing beyond a Vec's current capacity?",
+    "options": ["The program must panic", "The Vec allocates a larger buffer and moves its elements", "The oldest element is removed", "The Vec becomes an array"],
+    "correct_answers": [1],
+    "explanation": "A vector grows by allocating additional capacity and relocating its elements when necessary."
+  },
+  {
+    "id": 13,
+    "prompt": "Which parameter type is usually most flexible for a read-only function accepting arrays and vectors?",
+    "options": ["&[T]", "&Vec<T>", "[T; 10]", "Vec<T>"],
+    "correct_answers": [0],
+    "explanation": "A slice accepts borrowed data from arrays, vectors, and other contiguous sequences."
+  },
+  {
+    "id": 14,
+    "prompt": "Which HashMap API is designed to insert a default only when a key is absent?",
+    "options": ["drain", "entry(...).or_insert(...)", "capacity", "retain"],
+    "correct_answers": [1],
+    "explanation": "The entry API performs conditional insertion without a separate lookup."
+  },
+  {
+    "id": 15,
+    "prompt": "Which tasks suit a HashSet? Select all that apply.",
+    "options": ["Tracking unique values", "Indexing values by numeric position", "Fast membership checks", "Storing duplicate values in insertion order"],
+    "correct_answers": [0, 2],
+    "explanation": "HashSet is designed for uniqueness and average constant-time membership checks."
+  },
+  {
+    "id": 16,
+    "prompt": "What does `Option<T>` represent?",
+    "options": ["A value or an error message", "Either `Some(T)` or `None`", "A value that must be heap allocated", "A value shared across threads"],
+    "correct_answers": [1],
+    "explanation": "Option models the presence or absence of a value without null."
+  },
+  {
+    "id": 17,
+    "prompt": "What can the `?` operator do with a Result? Select all that apply.",
+    "options": ["Extract the Ok value", "Convert every error into a panic", "Return early when the value is Err", "Ignore an error and continue"],
+    "correct_answers": [0, 2],
+    "explanation": "The operator unwraps success or propagates a compatible error to the caller."
+  },
+  {
+    "id": 18,
+    "prompt": "When is `panic!` generally most appropriate?",
+    "options": ["For every invalid user input", "For unrecoverable states or violated internal invariants", "Instead of all Result values", "For normal control flow"],
+    "correct_answers": [1],
+    "explanation": "Expected failures should normally use Result; panics signal bugs or unrecoverable conditions."
+  },
+  {
+    "id": 19,
+    "prompt": "What can struct update syntax (`..other`) do with non-Copy fields?",
+    "options": ["It always clones them", "It may move them from `other`", "It makes them public", "It converts them to references"],
+    "correct_answers": [1],
+    "explanation": "Fields not explicitly supplied are moved unless their types implement Copy."
+  },
+  {
+    "id": 20,
+    "prompt": "Which statements about enums are true? Select all that apply.",
+    "options": ["Each variant may carry different data", "All variants exist simultaneously", "Pattern matching can destructure variant data", "Enums cannot have methods"],
+    "correct_answers": [0, 2],
+    "explanation": "An enum value is one variant at a time, and variants may contain different fields."
+  },
+  {
+    "id": 21,
+    "prompt": "What important property does `match` provide for enums?",
+    "options": ["Automatic parallel execution", "Exhaustiveness checking", "Implicit heap allocation", "Dynamic typing"],
+    "correct_answers": [1],
+    "explanation": "The compiler verifies that every possible case is handled unless a catch-all pattern is present."
+  },
+  {
+    "id": 22,
+    "prompt": "When is `if let` especially useful?",
+    "options": ["When every enum variant needs different logic", "When only one pattern matters and the rest can be ignored", "When declaring a generic type", "When spawning a thread"],
+    "correct_answers": [1],
+    "explanation": "if let is concise for a single interesting pattern."
+  },
+  {
+    "id": 23,
+    "prompt": "What does a generic function such as `fn first<T>(items: &[T])` abstract over?",
+    "options": ["The element type", "The operating system", "The number of CPU cores", "The function's visibility"],
+    "correct_answers": [0],
+    "explanation": "The type parameter T allows the same implementation to work with many element types."
+  },
+  {
+    "id": 24,
+    "prompt": "What does a trait define?",
+    "options": ["Only stored data fields", "Shared behavior or capabilities that types can implement", "A mandatory heap layout", "A package download source"],
+    "correct_answers": [1],
+    "explanation": "Traits declare methods, associated types, and constants that implementing types provide."
+  },
+  {
+    "id": 25,
+    "prompt": "Which syntax adds a Display requirement to a generic type T?",
+    "options": ["T = Display", "T: Display", "T -> Display", "Display<T>"],
+    "correct_answers": [1],
+    "explanation": "A colon introduces trait bounds on a type parameter."
+  },
+  {
+    "id": 26,
+    "prompt": "Which statements describe trait objects such as `Box<dyn Draw>`? Select all that apply.",
+    "options": ["They enable runtime dynamic dispatch", "They preserve the concrete type in the variable's static type", "They can store different concrete implementors behind one interface", "Every trait can automatically be used as a trait object"],
+    "correct_answers": [0, 2],
+    "explanation": "Trait objects erase the concrete type and dispatch object-safe methods through a vtable."
+  },
+  {
+    "id": 27,
+    "prompt": "Which trait should a type implement for user-facing `{}` formatting?",
+    "options": ["Debug", "Display", "Iterator", "FromStr"],
+    "correct_answers": [1],
+    "explanation": "Display powers the standard user-facing formatting syntax."
+  },
+  {
+    "id": 28,
+    "prompt": "When do most iterator adapters perform their work?",
+    "options": ["As soon as the iterator is declared", "When a consuming operation drives the iterator", "Only during compilation", "When the vector capacity changes"],
+    "correct_answers": [1],
+    "explanation": "Iterator adapters are lazy until a consumer such as collect, sum, or for requests items."
+  },
+  {
+    "id": 29,
+    "prompt": "Which iterator adapter transforms every item into another value?",
+    "options": ["map", "filter", "take", "enumerate"],
+    "correct_answers": [0],
+    "explanation": "map applies a closure to each yielded item."
+  },
+  {
+    "id": 30,
+    "prompt": "Which iterator adapter keeps only items satisfying a predicate?",
+    "options": ["fold", "filter", "chain", "zip"],
+    "correct_answers": [1],
+    "explanation": "filter yields only values for which its predicate returns true."
+  },
+  {
+    "id": 31,
+    "prompt": "Which collections can `collect()` build with suitable iterator item types? Select all that apply.",
+    "options": ["Vec<T>", "A bare unsized str", "HashMap<K, V> from `(K, V)` pairs", "A function pointer"],
+    "correct_answers": [0, 2],
+    "explanation": "collect uses FromIterator; Vec and HashMap implement it for appropriate items."
+  },
+  {
+    "id": 32,
+    "prompt": "How may closures capture variables? Select all that apply.",
+    "options": ["By shared reference", "By mutable reference", "By value", "Only through global variables"],
+    "correct_answers": [0, 1, 2],
+    "explanation": "The compiler chooses shared, mutable, or by-value capture based on how the closure uses a variable."
+  },
+  {
+    "id": 33,
+    "prompt": "Which closure trait allows a closure to consume captured values and therefore be called only once?",
+    "options": ["Fn", "FnMut", "FnOnce", "Iterator"],
+    "correct_answers": [2],
+    "explanation": "FnOnce is implemented by all closures and permits consuming captured state."
+  },
+  {
+    "id": 34,
+    "prompt": "Which are common uses of `Box<T>`? Select all that apply.",
+    "options": ["Owning a value on the heap", "Giving recursive types a known size", "Sharing ownership without reference counts", "Bypassing all borrow checks"],
+    "correct_answers": [0, 1],
+    "explanation": "Box provides single ownership of heap data and indirection for recursively defined types."
+  },
+  {
+    "id": 35,
+    "prompt": "Which statements about `Rc<T>` are true? Select all that apply.",
+    "options": ["It provides reference-counted shared ownership", "It is intended for unrestricted sharing across threads", "Cloning an Rc increments a count rather than cloning T", "It always permits mutable access to T"],
+    "correct_answers": [0, 2],
+    "explanation": "Rc is single-threaded shared ownership. Mutation commonly requires RefCell or another suitable abstraction."
+  },
+  {
+    "id": 36,
+    "prompt": "What is the key behavior of `RefCell<T>`?",
+    "options": ["It makes every value thread-safe", "It enforces borrowing rules at runtime", "It disables borrowing rules", "It stores only references"],
+    "correct_answers": [1],
+    "explanation": "RefCell supports interior mutability and panics if runtime borrow rules are violated."
+  },
+  {
+    "id": 37,
+    "prompt": "Why is `Weak<T>` useful with reference-counted data?",
+    "options": ["It creates non-owning links that can avoid cycles", "It permits data races", "It automatically locks data", "It converts Rc into Box"],
+    "correct_answers": [0],
+    "explanation": "Weak references do not keep the allocation alive and are useful for parent links and cycle prevention."
+  },
+  {
+    "id": 38,
+    "prompt": "Which smart pointer provides thread-safe reference counting?",
+    "options": ["Rc<T>", "Arc<T>", "RefCell<T>", "Cell<T>"],
+    "correct_answers": [1],
+    "explanation": "Arc uses atomic reference counting and can be shared across threads when T satisfies the needed bounds."
+  },
+  {
+    "id": 39,
+    "prompt": "Which statements about `Mutex<T>` are true? Select all that apply.",
+    "options": ["Access to T is mediated by a lock guard", "It guarantees deadlocks are impossible", "The lock is released when its guard is dropped", "It permits simultaneous mutable access without synchronization"],
+    "correct_answers": [0, 2],
+    "explanation": "A Mutex serializes access. Correct lock ordering is still required to avoid deadlocks."
+  },
+  {
+    "id": 40,
+    "prompt": "What does the `Send` marker trait indicate?",
+    "options": ["References to the type can always be shared", "Ownership of the type may be transferred between threads", "The type can send HTTP requests", "The type implements serialization"],
+    "correct_answers": [1],
+    "explanation": "Send marks types whose ownership can safely cross a thread boundary."
+  },
+  {
+    "id": 41,
+    "prompt": "What does `Sync` indicate for a type T?",
+    "options": ["`&T` can be shared safely between threads", "T is always Copy", "T uses synchronous I/O", "T cannot contain references"],
+    "correct_answers": [0],
+    "explanation": "T is Sync when shared references to T are safe to send between threads."
+  },
+  {
+    "id": 42,
+    "prompt": "Why is `move` often used on a closure passed to `thread::spawn`?",
+    "options": ["To move the thread to another CPU manually", "To transfer captured ownership into the potentially longer-lived thread", "To make the closure execute twice", "To force dynamic dispatch"],
+    "correct_answers": [1],
+    "explanation": "Spawned threads require captured values to outlive the spawn call, so moving ownership is often necessary."
+  },
+  {
+    "id": 43,
+    "prompt": "Which statements about Rust channels are true? Select all that apply.",
+    "options": ["They transfer messages between tasks or threads", "The receiver must poll shared memory without synchronization", "Dropping all senders eventually closes the channel", "Messages are always copied bit-for-bit"],
+    "correct_answers": [0, 2],
+    "explanation": "Channels move messages and signal closure when no senders remain."
+  },
+  {
+    "id": 44,
+    "prompt": "What advantage does `std::thread::scope` provide?",
+    "options": ["It makes threads asynchronous", "Scoped threads may borrow non-static local data", "It prevents all thread panics", "It creates process-level isolation"],
+    "correct_answers": [1],
+    "explanation": "The scope guarantees child threads finish before borrowed stack data goes out of scope."
+  },
+  {
+    "id": 45,
+    "prompt": "Which statements about atomics are true? Select all that apply.",
+    "options": ["They provide indivisible operations on supported primitive values", "Every atomic ordering has identical synchronization cost", "Memory ordering is part of their correctness contract", "They can directly make any arbitrary struct atomic"],
+    "correct_answers": [0, 2],
+    "explanation": "Atomic operations are indivisible, while orderings define how operations synchronize with other memory accesses."
+  },
+  {
+    "id": 46,
+    "prompt": "What does calling an `async fn` return before it is awaited?",
+    "options": ["The final value immediately", "A Future representing the pending computation", "A new operating-system thread", "A Result in every case"],
+    "correct_answers": [1],
+    "explanation": "An async function creates a lazy Future that must be polled, commonly through await."
+  },
+  {
+    "id": 47,
+    "prompt": "Which statements about `.await` are true? Select all that apply.",
+    "options": ["It is used inside async contexts", "It always blocks the entire operating-system thread", "It may yield so other tasks can run while the future is pending", "It can be applied to any integer"],
+    "correct_answers": [0, 2],
+    "explanation": "Await polls a Future and cooperatively yields when the result is not ready."
+  },
+  {
+    "id": 48,
+    "prompt": "What does `tokio::spawn` return?",
+    "options": ["The task's result directly", "A JoinHandle for the spawned asynchronous task", "A Mutex guard", "A new Tokio runtime"],
+    "correct_answers": [1],
+    "explanation": "The JoinHandle is itself awaitable and reports the task result or join failure."
+  },
+  {
+    "id": 49,
+    "prompt": "What does `tokio::join!` do?",
+    "options": ["Polls multiple futures concurrently and waits for all of them", "Runs only the fastest future and cancels the rest", "Creates one OS thread per future", "Combines two channels"],
+    "correct_answers": [0],
+    "explanation": "join! drives all supplied futures on the current task until every one completes."
+  },
+  {
+    "id": 50,
+    "prompt": "What is `tokio::select!` designed to do?",
+    "options": ["Sort asynchronous results", "Wait for the first ready branch among multiple async operations", "Convert blocking code automatically", "Create a desktop window"],
+    "correct_answers": [1],
+    "explanation": "select! races async branches and executes the branch that becomes ready."
+  },
+  {
+    "id": 51,
+    "prompt": "Which tasks suit a Tokio `Semaphore`? Select all that apply.",
+    "options": ["Limiting simultaneous work", "Encoding JSON", "Protecting a bounded pool of resources", "Replacing every Mutex"],
+    "correct_answers": [0, 2],
+    "explanation": "A semaphore exposes a fixed number of permits, making it useful for concurrency and resource limits."
+  },
+  {
+    "id": 52,
+    "prompt": "Which Serde derives are commonly used for JSON data? Select all that apply.",
+    "options": ["Iterator", "Serialize", "Deserialize", "Deref"],
+    "correct_answers": [1, 2],
+    "explanation": "Serialize converts Rust data to a format; Deserialize constructs Rust data from it."
+  },
+  {
+    "id": 53,
+    "prompt": "Which serde_json type represents a dynamically typed JSON tree?",
+    "options": ["serde_json::Value", "serde_json::TreeMap", "serde_json::Document", "serde_json::Dynamic"],
+    "correct_answers": [0],
+    "explanation": "Value has variants for null, booleans, numbers, strings, arrays, and objects."
+  },
+  {
+    "id": 54,
+    "prompt": "Which Serde attribute converts Rust snake_case fields to JSON camelCase?",
+    "options": ["#[serde(case = \"camel\")]", "#[serde(rename_all = \"camelCase\")]", "#[serde(camel_case)]", "#[serde(json_names)]"],
+    "correct_answers": [1],
+    "explanation": "rename_all applies a naming convention to every serialized or deserialized field."
+  },
+  {
+    "id": 55,
+    "prompt": "What does Reqwest's `error_for_status()` provide?",
+    "options": ["It converts 4xx and 5xx responses into errors", "It retries every failed request forever", "It validates JSON schemas", "It ignores the HTTP status"],
+    "correct_answers": [0],
+    "explanation": "Sending a request can succeed at the transport level even when the server returns an error status."
+  },
+  {
+    "id": 56,
+    "prompt": "Why reuse an HTTP Client? Select all that apply.",
+    "options": ["It can reuse connection pools", "It makes every response successful", "It centralizes defaults such as timeouts and headers", "It removes the need to handle errors"],
+    "correct_answers": [0, 2],
+    "explanation": "A reusable client shares connections and configuration across requests."
+  },
+  {
+    "id": 57,
+    "prompt": "What visibility do items have inside a module unless marked otherwise?",
+    "options": ["Public everywhere", "Private to the module and its descendants", "Public only on Windows", "Visible only to macros"],
+    "correct_answers": [1],
+    "explanation": "Rust items are private by default; `pub` and restricted forms widen access."
+  },
+  {
+    "id": 58,
+    "prompt": "What does `pub use path::Item;` commonly accomplish?",
+    "options": ["It publicly re-exports Item at a new path", "It deletes the original item", "It converts Item into a trait", "It imports a Cargo dependency"],
+    "correct_answers": [0],
+    "explanation": "A public use declaration creates part of a crate's intentional public API."
+  },
+  {
+    "id": 59,
+    "prompt": "Which statement correctly distinguishes Cargo packages and crates?",
+    "options": ["They are always unrelated", "A crate may contain many packages", "A package can contain one or more crate targets", "Only libraries are crates"],
+    "correct_answers": [2],
+    "explanation": "A Cargo package is described by Cargo.toml and may provide library, binary, example, and test crates."
+  },
+  {
+    "id": 60,
+    "prompt": "Where are unit tests commonly placed in Rust?",
+    "options": ["Only in a separate repository", "In a `#[cfg(test)]` module near the code", "Only inside Cargo.toml", "Inside the target directory"],
+    "correct_answers": [1],
+    "explanation": "Unit tests are usually child modules of the implementation and can test private items."
+  },
+  {
+    "id": 61,
+    "prompt": "Which statements describe Cargo integration tests? Select all that apply.",
+    "options": ["They live under the `tests` directory", "They can directly access private library functions", "Each integration test file is compiled as a separate crate", "They cannot import the package library"],
+    "correct_answers": [0, 2],
+    "explanation": "Integration tests consume the public API as external crates."
+  },
+  {
+    "id": 62,
+    "prompt": "What does `#[should_panic]` mean on a test?",
+    "options": ["The test is skipped", "The test passes only if its body panics as expected", "The compiler ignores syntax errors", "The test runs in release mode"],
+    "correct_answers": [1],
+    "explanation": "An optional expected message can make a should_panic test more precise."
+  },
+  {
+    "id": 63,
+    "prompt": "Which statements about Rust documentation tests are true? Select all that apply.",
+    "options": ["Rust code blocks in docs can be compiled and run as tests", "They can only contain pseudocode", "`cargo test --doc` runs them", "They require a separate programming language"],
+    "correct_answers": [0, 2],
+    "explanation": "Doctests verify that public examples remain valid and usable."
+  },
+  {
+    "id": 64,
+    "prompt": "What kind of macro does `macro_rules!` define?",
+    "options": ["A procedural attribute macro", "A declarative pattern-based macro", "A C preprocessor macro", "A runtime reflection object"],
+    "correct_answers": [1],
+    "explanation": "macro_rules matches token patterns and expands them into Rust syntax."
+  },
+  {
+    "id": 65,
+    "prompt": "Which operations require an unsafe block? Select all that apply.",
+    "options": ["Dereferencing a raw pointer", "Calling an unsafe function", "Borrowing a value immutably", "Reading a union field"],
+    "correct_answers": [0, 1, 3],
+    "explanation": "Unsafe blocks permit a small explicit set of operations whose invariants the programmer must uphold."
+  },
+  {
+    "id": 66,
+    "prompt": "What does the `unsafe` keyword do to Rust's normal checks?",
+    "options": ["It disables every compiler check in the module", "It guarantees the code is memory safe", "It enables specific extra operations while normal type and borrow checks remain", "It makes all functions callable from C"],
+    "correct_answers": [2],
+    "explanation": "Unsafe is not an escape from Rust; it marks where additional safety obligations are manually upheld."
+  },
+  {
+    "id": 67,
+    "prompt": "What guarantee does `Pin<P>` help express?",
+    "options": ["The pointee is always stored on the stack", "A value that is not Unpin will not be moved through the pinned pointer", "The value can never be dropped", "The pointer is automatically thread-safe"],
+    "correct_answers": [1],
+    "explanation": "Pin supports address-sensitive values such as certain self-referential futures."
+  },
+  {
+    "id": 68,
+    "prompt": "Which statements describe `Cow<'a, T>`? Select all that apply.",
+    "options": ["It can hold borrowed or owned data", "It always clones immediately", "It supports clone-on-write behavior", "It is a synchronization primitive"],
+    "correct_answers": [0, 2],
+    "explanation": "Cow avoids allocation while data remains borrowed and creates owned data when mutation is required."
+  },
+  {
+    "id": 69,
+    "prompt": "When is a type's `Drop::drop` method called?",
+    "options": ["Every time the value is borrowed", "When the value goes out of scope or is explicitly passed to `drop`", "Only when the operating system shuts down", "Immediately after construction"],
+    "correct_answers": [1],
+    "explanation": "Rust runs destructors deterministically when ownership ends."
+  },
+  {
+    "id": 70,
+    "prompt": "Which statements about Cargo features are true? Select all that apply.",
+    "options": ["They enable conditional compilation and optional capabilities", "They automatically download arbitrary executables", "They are additive within a dependency graph", "They replace Rust's type system"],
+    "correct_answers": [0, 2],
+    "explanation": "Cargo features select conditional code and optional dependencies, and enabled features are unified additively."
+  }
+]

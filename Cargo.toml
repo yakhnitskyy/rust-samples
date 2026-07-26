@@ -19,5 +19,5 @@ members = [
     "16-macros",
     "17-unsafe-rust",
     "18-testing",
+    "19-rust-knowledge-tester",
 ]
-
